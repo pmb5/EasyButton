@@ -61,6 +61,27 @@ bool EasyButtonBase::releasedFor(uint32_t duration)
 	return !_current_state && _time - _last_change >= duration;
 }
 
+bool EasyButtonBase::releasedForLessThan(uint32_t duration)
+{
+	return !_current_state && _time - _last_change < duration;
+}
+
+bool EasyButtonBase::pressedForLessThan(uint32_t duration)
+{
+	return _current_state && _time - _last_change < duration;
+}
+
+void EasyButtonBase::enableDisableSequences(bool enable)
+{
+	for (Sequence seq : _sequences)
+	{
+		if (enable)
+			seq.enable();
+		else
+			seq.disable();
+	}
+}
+
 void EasyButtonBase::_checkPressedTime()
 {
 	uint32_t read_started_ms = millis();

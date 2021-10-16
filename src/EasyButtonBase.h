@@ -51,6 +51,11 @@ public:
     bool pressedFor(uint32_t duration);  // Returns true if the button state at the last read was pressed, and has been in that state for at least the given number of milliseconds.
     bool releasedFor(uint32_t duration); // Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
 
+    bool releasedForLessThan(uint32_t duration);  
+    bool pressedForLessThan(uint32_t duration);
+    
+    void enableDisableSequences(bool enable); // used to turn the squences feature on/off for the current button
+
 protected:
     // Common variables.
 #ifndef EASYBUTTON_DO_NOT_USE_SEQUENCES
