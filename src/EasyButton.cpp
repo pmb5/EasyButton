@@ -47,7 +47,9 @@ bool EasyButton::read()
 		if (_changed)
 		{
 			// State changed.
+			// Save the previous chnage time, so we can measure short presses
 			// Save current millis as last change time.
+			_previous_change = _last_change;
 			_last_change = read_started_ms;
 		}
 	}

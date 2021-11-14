@@ -51,9 +51,11 @@ public:
     bool pressedFor(uint32_t duration);  // Returns true if the button state at the last read was pressed, and has been in that state for at least the given number of milliseconds.
     bool releasedFor(uint32_t duration); // Returns true if the button state at the last read was released, and has been in that state for at least the given number of milliseconds.
 
-    bool releasedForLessThan(uint32_t duration);  
-    bool pressedForLessThan(uint32_t duration);
-    
+    bool releasedForLessThan(uint32_t duration);  // button is released and has been released for less than duration.
+    bool pressedForLessThan(uint32_t duration);   // button is pressed and has been pressed for less than duration.
+    bool wasPressedForLessThan(uint32_t duration); // button was pressed (now released) and was pressed for less than the duration.
+
+
     void enableDisableSequences(bool enable); // used to turn the squences feature on/off for the current button
 
 protected:
@@ -76,6 +78,7 @@ protected:
     bool _changed;                    // Has the state change since last read.
     uint32_t _time;                   // Time of current state.
     uint32_t _last_change;            // Time of last state change.
+    uint32_t _previous_change;        // Timer of the previous state change (so we can measure short presses)
     bool _was_btn_held;               // Indicate if button was held.
 
     // Common functions

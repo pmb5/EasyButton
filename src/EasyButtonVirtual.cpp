@@ -17,6 +17,7 @@ void EasyButtonVirtual::begin()
 	_time = millis();
 	_last_state = _current_state;
 	_changed = false;
+	_previous_change = _time;
 	_last_change = _time;
 }
 
@@ -40,7 +41,9 @@ bool EasyButtonVirtual::read()
 	if (_changed)
 	{
 		// State change.
+		// Save the previous change time
 		// Save current millis as last change time.
+		_previous_change = _last_change;
 		_last_change = read_started_ms;
 	}
 

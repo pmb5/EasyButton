@@ -71,6 +71,11 @@ bool EasyButtonBase::pressedForLessThan(uint32_t duration)
 	return _current_state && _time - _last_change < duration;
 }
 
+bool EasyButtonBase::wasPressedForLessThan(uint32_t duration)
+{
+	return !_current_state && _changed && _time - _previous_change < duration;
+}
+
 void EasyButtonBase::enableDisableSequences(bool enable)
 {
 	for (Sequence seq : _sequences)
